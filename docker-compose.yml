@@ -1,0 +1,14 @@
+services:
+  devtools.germaniii.com:
+    container_name: devtools.germaniii.com
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: base
+    tty: true
+    restart: always
+    volumes:
+      - ./:/app
+      - ./node_modules:/app/node_modules
+    ports:
+      - 3000:3000
