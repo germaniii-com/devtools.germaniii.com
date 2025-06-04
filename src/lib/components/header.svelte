@@ -1,17 +1,17 @@
+<script>
+	import Heading from "./heading.svelte";
+
+</script>
+
 <header>
-	<h2>devtools.germaniii.com</h2>
+	<Heading level={1}>devtools.germaniii.com</Heading>
 </header>
 
 <style>
 header {
-	box-shadow: 0px 3px 6px grey;
 	display: flex;
 	justify-content: flex-start;
+	align-items: center;
 	padding: 0 1em;
-}
-
-h2 {
-	color: black;
-	align-self: center;
 }
 </style>

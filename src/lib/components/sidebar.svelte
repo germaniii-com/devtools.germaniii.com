@@ -1,10 +1,16 @@
+<script>
+	import Heading from "./heading.svelte";
+
+</script>
+
 <nav>
-	<h1>Sidebar</h1>
+	<Heading level={2}>Sidebar</Heading>
 </nav>
 
 <style>
 nav {
 	height: 100%;
+	padding: 1em;
 }
 </style>
 
