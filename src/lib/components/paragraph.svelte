@@ -8,6 +8,7 @@
 p {
 	font-family: 'Noto Sans';
 	color: var(--fg);
+	font-size: 0.8em;
 }
 </style>
 
