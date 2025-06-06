@@ -1,17 +1,12 @@
 <script>
 	import Heading from './heading.svelte';
-	import pages from '../constants/pages';
+	import items from '../constants/pages';
+	import List from './sidebar-list.svelte';
 </script>
 
 <nav>
-	<Heading level={2}>Sidebar</Heading>
-	<ul>
-		{#each pages as page (page)}
-			<li>
-				{page}
-			</li>
-		{/each}
-	</ul>
+	<Heading level={2}>Tools</Heading>
+	<List {items} />
 </nav>
 
 <style>
