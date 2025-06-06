@@ -1,5 +1,5 @@
 <script>
-	let { level, children } = $props()
+	let { level, children } = $props();
 </script>
 
 {#if level == 1}
@@ -13,14 +13,16 @@
 {/if}
 
 <style>
-h1, h2, h3, h4 {
-	font-family: 'Schibsted Grotesk';
-	color: var(--orange);
-}
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: 'Schibsted Grotesk';
+		color: var(--orange);
+	}
 
-h1, h2 {
-	color: var(--yellow-dim);
-}
+	h1,
+	h2 {
+		color: var(--yellow-dim);
+	}
 </style>
-
-

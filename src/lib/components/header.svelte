@@ -1,6 +1,5 @@
 <script>
-	import Heading from "./heading.svelte";
-
+	import Heading from './heading.svelte';
 </script>
 
 <header>
@@ -8,10 +7,10 @@
 </header>
 
 <style>
-header {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 0 1em;
-}
+	header {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 0 1em;
+	}
 </style>
