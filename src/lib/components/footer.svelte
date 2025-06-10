@@ -53,7 +53,6 @@
 
 <style>
 	footer {
-		box-shadow: 0px -3px 6px grey;
 		display: flex;
 		justify-content: center;
 		align-items: center;

@@ -31,5 +31,6 @@
 		display: block;
 		height: 100%;
 		padding: 1em;
+		overflow-y: auto;
 	}
 </style>
