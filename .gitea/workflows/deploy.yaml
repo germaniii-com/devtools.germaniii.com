@@ -30,7 +30,7 @@ jobs:
             echo "[+] Running new container"
             docker run -d \
               --name devtools.germaniii.com \
-              -p 8002:80 \
+              -p 8003:3000 \
               --restart unless-stopped \
               ${{ vars.BASE_URL }}/${{ vars.USER }}/devtools.germaniii.com:latest
 
