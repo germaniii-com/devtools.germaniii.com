@@ -15,7 +15,6 @@
 		list-style-type: none;
 		padding: 0 1em;
 		margin: 0;
-		font-family: Fira Code;
 		font-size: 0.8em;
 	}
 </style>

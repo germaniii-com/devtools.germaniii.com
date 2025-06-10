@@ -1,7 +1,8 @@
 <script>
 	import { Footer, Header, Sidebar } from '$lib/components';
+	import { fade } from 'svelte/transition';
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <main>
@@ -9,7 +10,11 @@
 	<div class="content">
 		<Sidebar />
 		<div class="page-content">
-			{@render children()}
+			{#key data.pathname}
+				<div in:fade={{ duration: 300, delay: 400 }} out:fade={{ duration: 300 }}>
+					{@render children()}
+				</div>
+			{/key}
 		</div>
 	</div>
 	<Footer />
