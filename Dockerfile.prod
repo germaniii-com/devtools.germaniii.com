@@ -1,0 +1,41 @@
+# Stage 1: Build the application
+FROM node:22-slim AS builder
+WORKDIR /app
+
+# Copy package configurations first to leverage Docker layer caching
+COPY package*.json ./
+RUN npm ci
+
+# Copy the rest of the application source and build it
+COPY . .
+RUN npm run build
+
+# Remove development dependencies to keep the production layer tiny
+RUN npm prune --omit=dev
+
+
+# Stage 2: Production runtime
+FROM node:22-alpine AS production
+WORKDIR /app
+
+# 1. Install libcap so we can modify binary capabilities
+RUN apk add --no-cache libcap
+
+# Copy the build artifacts and production dependencies
+COPY --from=builder --chown=node:node /app/build ./build
+COPY --from=builder --chown=node:node /app/node_modules ./node_modules
+COPY --from=builder --chown=node:node /app/package.json ./package.json
+
+# 2. Grant Node permission to bind to low ports (<1024) as a non-root user
+RUN setcap 'cap_net_bind_service=+ep' /usr/local/bin/node
+
+# Safely switch to the unprivileged node user
+USER node
+
+# Configure environment variables for Port 80
+ENV NODE_ENV=production
+ENV PORT=80
+EXPOSE 80
+
+# Execute the entrypoint
+CMD ["node", "build/index.js"]

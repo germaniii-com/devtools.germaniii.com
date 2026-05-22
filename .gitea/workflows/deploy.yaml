@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  registry_package:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull and Run Container
+        run: |
+            echo "[+] Stopping old container"
+            docker stop devtools.germaniii.com || true
+            docker rm devtools.germaniii.com || true
+
+            echo "[+] Pulling latest image"
+            docker pull ${{ vars.BASE_URL }}/${{ vars.USER }}/devtools.germaniii.com:latest
+
+            echo "[+] Running new container"
+            docker run -d \
+              --name devtools.germaniii.com \
+              -p 8003:80 \
+              --restart unless-stopped \
+              ${{ vars.BASE_URL }}/${{ vars.USER }}/devtools.germaniii.com:latest
