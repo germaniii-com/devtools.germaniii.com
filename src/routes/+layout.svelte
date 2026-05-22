@@ -18,17 +18,17 @@
 </main>
 
 <style>
-main {
-	display: grid;
-	grid-template-rows: 5vh 90vh 5vh;
-}
-.content {
-	display: grid;
-	grid-template-columns: 20vw 80vw;
-	max-height: 90vh;
-}
-.page-content {
-	display: block;
-	height: 100%;
-}
+	main {
+		display: grid;
+		grid-template-rows: 5vh 90vh 5vh;
+	}
+	.content {
+		display: grid;
+		grid-template-columns: 20vw 80vw;
+		max-height: 90vh;
+	}
+	.page-content {
+		display: block;
+		height: 100%;
+	}
 </style>
