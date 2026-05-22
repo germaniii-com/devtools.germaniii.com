@@ -6,29 +6,38 @@
 	let { children } = $props();
 </script>
 
-<main>
+<main class="layout">
 	<Header />
-	<div class="content">
+
+	<div class="layout-container">
 		<Sidebar />
 		<div class="page-content">
 			{@render children()}
 		</div>
 	</div>
+
 	<Footer />
 </main>
 
 <style>
-	main {
+	.layout {
+		height: 100vh;
 		display: grid;
-		grid-template-rows: 5vh 90vh 5vh;
+		grid-template-rows: auto 1fr auto;
 	}
-	.content {
-		display: grid;
-		grid-template-columns: 20vw 80vw;
-		max-height: 90vh;
-	}
-	.page-content {
-		display: block;
+
+	.layout-container {
+		display: flex;
+		flex-direction: row;
+		background: var(--background);
 		height: 100%;
+		min-height: 0;
+	}
+
+	.page-content {
+		flex-grow: 1;
+		overflow-y: auto;
+		background: var(--background);
+		color: var(--text);
 	}
 </style>
