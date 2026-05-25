@@ -1,56 +1,71 @@
+<script>
+	const navigation = [
+		{
+			title: 'String Utilities',
+			items: [
+				{ name: 'Text Compare', path: '/string/text-compare' },
+				{ name: 'Regex Test', path: '/string/regex-test' },
+				{ name: 'Case Convert', path: '/string/case-convert' },
+				{ name: 'String Analyzer', path: '/string/string-analyzer' },
+				{ name: 'Markdown Previewer', path: '/string/markdown-previewer' }
+			]
+		},
+		{
+			title: 'Formatters',
+			items: [
+				{ name: 'JSON Formatting', path: '/formatters/json' },
+				{ name: 'XML Formatter', path: '/formatters/xml' },
+				{ name: 'HTML/CSS/JS Formatter', path: '/formatters/prettier' },
+				{ name: 'Code Minifier', path: '/formatters/minifier' }
+			]
+		},
+		{
+			title: 'Encoder/Decoders',
+			items: [
+				{ name: 'Base64 Encode/Decode', path: '/encoding/base64' },
+				{ name: 'URL Encode/Decode', path: '/encoding/url' },
+				{ name: 'JWT Decode', path: '/encoding/jwt' },
+				{ name: 'HTML Entity Decode', path: '/encoding/html-entity' }
+			]
+		},
+		{
+			title: 'Data Converters',
+			items: [
+				{ name: 'JSON to YAML', path: '/converters/json-yaml' },
+				{ name: 'JSON to CSV', path: '/converters/json-csv' },
+				{ name: 'CSV to JSON', path: '/converters/csv-json' },
+				{ name: 'Color Converter', path: '/converters/color' },
+				{ name: 'Timestamp Converter', path: '/converters/timestamp' }
+			]
+		},
+		{
+			title: 'Generators',
+			items: [
+				{ name: 'UUID / ULID / GUID', path: '/generators/uuid' },
+				{ name: 'Hash Generator', path: '/generators/hash' },
+				{ name: 'Lorem Ipsum Generator', path: '/generators/lorem-ipsum' },
+				{ name: 'Strong Password Generator', path: '/generators/password' },
+				{ name: 'QR Code Generator', path: '/generators/qr-code' }
+			]
+		}
+	];
+</script>
+
 <nav class="sidebar">
-	<div class="group">
-		<h2>String Utilities</h2>
-		<ul>
-			<li>Text Compare</li>
-			<li>Regex Test</li>
-			<li>Case Convert</li>
-			<li>String Analyzer</li>
-			<li>Markdown Previewer</li>
-		</ul>
-	</div>
-
-	<div class="group">
-		<h2>Formatters</h2>
-		<ul>
-			<li>JSON Formatting</li>
-			<li>XML Formatter</li>
-			<li>HTML/CSS/JS Formatter (Prettier)</li>
-			<li>Code Minifier</li>
-		</ul>
-	</div>
-
-	<div class="group">
-		<h2>Encoder/Decoders</h2>
-		<ul>
-			<li>Base64 Encode/Decode</li>
-			<li>URL Encode/Decode</li>
-			<li>JWT Decode</li>
-			<li>HTML Entity Decode</li>
-		</ul>
-	</div>
-
-	<div class="group">
-		<h2>Data Converters</h2>
-		<ul>
-			<li>JSON to YAML</li>
-			<li>JSON to CSV</li>
-			<li>CSV to JSON</li>
-			<li>Color Converter</li>
-			<li>Timestamp Converter</li>
-		</ul>
-	</div>
-
-	<div class="group">
-		<h2>Generators</h2>
-		<ul>
-			<li>UUID / ULID / GUID</li>
-			<li>Hash Generator</li>
-			<li>Lorem Ipsum Generator</li>
-			<li>Strong Password Generator</li>
-			<li>QR Code Generator</li>
-		</ul>
-	</div>
+	{#each navigation as group (group.title)}
+		<div class="group">
+			<h2>{group.title}</h2>
+			<ul>
+				{#each group.items as item (item.path)}
+					<li>
+						<a href={item.path} class="nav-link">
+							{item.name}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
+	{/each}
 </nav>
 
 <style>
@@ -97,7 +112,22 @@
 		font-family: var(--font-family-sans);
 	}
 
-	.group li:hover {
+	.nav-link {
+		display: block;
+		padding: 0.35rem 0.75rem;
+		border-radius: var(--radius);
+		margin-bottom: 0.15rem;
+		cursor: pointer;
+		transition:
+			background-color 0.15s,
+			color 0.15s;
+		color: var(--text);
+		font-size: 0.85rem;
+		font-family: var(--font-family-sans);
+		text-decoration: none;
+	}
+
+	.nav-link:hover {
 		background: var(--primary);
 		color: #ffffff;
 	}

@@ -39,5 +39,6 @@
 		overflow-y: auto;
 		background: var(--background);
 		color: var(--text);
+		margin: 1em;
 	}
 </style>
