@@ -29,4 +29,3 @@ jobs:
 
       - name: Push image
         run: docker push $REGISTRY/$IMAGE_NAME:latest
-

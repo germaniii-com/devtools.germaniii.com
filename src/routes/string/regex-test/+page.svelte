@@ -63,21 +63,14 @@
 <div class="regex-tool-container">
 	<div class="tool-header">
 		<h1>Regex Test</h1>
-		<p class="tool-description">
-			Input your regular expression and the string to test against it.
-		</p>
+		<p class="tool-description">Input your regular expression and the string to test against it.</p>
 	</div>
 
 	<div class="edit-view animate-fade-in">
 		<div class="textareas-container">
 			<div class="textarea-wrapper">
 				<label for="regex-pattern">Regular Expression</label>
-				<input
-					type="text"
-					id="regex-pattern"
-					bind:value={regexPattern}
-					placeholder="e.g., \d+"
-				/>
+				<input type="text" id="regex-pattern" bind:value={regexPattern} placeholder="e.g., \d+" />
 			</div>
 			<div class="textarea-wrapper">
 				<label for="test-string">Test String</label>
