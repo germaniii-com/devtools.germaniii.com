@@ -23,5 +23,5 @@ jobs:
             docker run -d \
               --name devtools.germaniii.com \
               -p 8003:80 \
-              --restart unless-stopped \
+              --restart unless-stopped  \
               ${{ vars.BASE_URL }}/${{ vars.USER }}/devtools.germaniii.com:latest
