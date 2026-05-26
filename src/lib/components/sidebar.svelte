@@ -31,9 +31,8 @@
 		{
 			title: 'Data Converters',
 			items: [
-				{ name: 'JSON to YAML', path: '/converters/json-yaml' },
-				{ name: 'JSON to CSV', path: '/converters/json-csv' },
-				{ name: 'CSV to JSON', path: '/converters/csv-json' },
+				{ name: 'JSON / YAML Converter', path: '/converters/json-yaml' },
+				{ name: 'JSON / CSV Converter', path: '/converters/json-csv' },
 				{ name: 'Color Converter', path: '/converters/color' },
 				{ name: 'Timestamp Converter', path: '/converters/timestamp' }
 			]
