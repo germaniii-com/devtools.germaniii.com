@@ -34,7 +34,8 @@
 
 	let error = $derived.by(() => {
 		if (!inputText.trim()) return '';
-		if (!date) return 'Invalid timestamp. Try Unix seconds (1700000000), milliseconds, or an ISO 8601 string.';
+		if (!date)
+			return 'Invalid timestamp. Try Unix seconds (1700000000), milliseconds, or an ISO 8601 string.';
 		return '';
 	});
 

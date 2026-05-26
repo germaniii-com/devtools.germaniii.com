@@ -34,7 +34,8 @@
 				{ name: 'JSON / YAML Converter', path: '/converters/json-yaml' },
 				{ name: 'JSON / CSV Converter', path: '/converters/json-csv' },
 				{ name: 'Color Converter', path: '/converters/color' },
-				{ name: 'Timestamp Converter', path: '/converters/timestamp' }
+				{ name: 'Timestamp Converter', path: '/converters/timestamp' },
+				{ name: 'Timezone Converter', path: '/converters/timezone' }
 			]
 		},
 		{
