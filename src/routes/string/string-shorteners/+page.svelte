@@ -1,6 +1,9 @@
 <script>
 	import { Check, Copy } from '@lucide/svelte';
 	let inputText = $state('');
+	let useCaveman = $state(true);
+	let useDisemvowel = $state(true);
+	let useTelegraphese = $state(true);
 	let copiedId = $state(null);
 	let timeoutId = null;
 
@@ -35,7 +38,8 @@
 		if (!text.trim()) return '';
 		let result = text;
 
-		const articles = /\b(a|an|the|is|are|was|were|am|be|been|being|has|have|had|do|does|did|will|would|shall|should|can|could|may|might|must|this|that|these|those)\b/gi;
+		const articles =
+			/\b(a|an|the|is|are|was|were|am|be|been|being|has|have|had|do|does|did|will|would|shall|should|can|could|may|might|must|this|that|these|those)\b/gi;
 		result = result.replace(articles, '');
 
 		result = result.replace(/\b(I|my|mine)\b/gi, 'Me');
@@ -65,8 +69,12 @@
 			.join('');
 	}
 
-	function combined(text) {
-		return caveman(disemvowel(telegraphese(text)));
+	function applyCombined(text) {
+		let result = text;
+		if (useTelegraphese) result = telegraphese(result);
+		if (useDisemvowel) result = disemvowel(result);
+		if (useCaveman) result = caveman(result);
+		return result;
 	}
 
 	function telegraphese(text) {
@@ -74,7 +82,8 @@
 
 		let result = text;
 
-		const filler = /\b(a|an|the|is|are|was|were|am|be|been|being|has|have|had|do|does|did|will|would|shall|should|can|could|may|might|must|this|that|these|those|my|mine|your|yours|his|her|hers|its|our|ours|their|theirs|i|you|he|she|it|we|they|me|him|us|them|and|or|but|so|for|nor|yet|very|really|quite|some|any|every|each|all|both|few|several|much|many|to|too|also|just|then|there|here|in|on|at|by|with|from|of|about|into|through|during|before|after|above|below|between|out|off|over|under|again|further|more|once|as|than|because|if|while|although|since|until|afterwards|meanwhile|therefore|however|indeed|instead|anyway|whatever)\b/gi;
+		const filler =
+			/\b(a|an|the|is|are|was|were|am|be|been|being|has|have|had|do|does|did|will|would|shall|should|can|could|may|might|must|this|that|these|those|my|mine|your|yours|his|her|hers|its|our|ours|their|theirs|i|you|he|she|it|we|they|me|him|us|them|and|or|but|so|for|nor|yet|very|really|quite|some|any|every|each|all|both|few|several|much|many|to|too|also|just|then|there|here|in|on|at|by|with|from|of|about|into|through|during|before|after|above|below|between|out|off|over|under|again|further|more|once|as|than|because|if|while|although|since|until|afterwards|meanwhile|therefore|however|indeed|instead|anyway|whatever)\b/gi;
 		result = result.replace(filler, '');
 
 		result = result.replace(/\band\b/gi, ',');
@@ -117,22 +126,19 @@
 				name: 'Telegraphese',
 				desc: 'Strip filler words, compress, stop sentences with STOP',
 				value: telegraphese(inputText)
-			},
-			{
-				id: 'combined',
-				name: 'Combined',
-				desc: 'All three shorteners applied together — maximum compression',
-				value: combined(inputText)
 			}
 		];
 	});
+
+	let combinedValue = $derived(applyCombined(inputText));
 </script>
 
 <div class="shorteners-container">
 	<div class="tool-header">
 		<h1>String Shorteners</h1>
 		<p class="tool-description">
-			Shorten your text using different strategies — Caveman, Disemvoweling, Telegraphese, or all combined.
+			Shorten your text using different strategies — Caveman, Disemvoweling, Telegraphese, or all
+			combined.
 		</p>
 	</div>
 
@@ -153,6 +159,47 @@
 	</div>
 
 	<div class="strategies-section animate-fade-in">
+		<div class="strategy-card combined-card">
+			<div class="strategy-card-header">
+				<div class="strategy-info">
+					<span class="strategy-title">Combined</span>
+					<div class="strategy-desc">Select which shorteners to apply in sequence</div>
+				</div>
+				<button
+					class="btn-copy"
+					class:copied={copiedId === 'combined'}
+					onclick={() => copyToClipboard(combinedValue, 'combined')}
+				>
+					{#if copiedId === 'combined'}
+						<span class="copied-text">Copied!</span>
+						<Check size={14} />
+					{:else}
+						<span>Copy</span>
+						<Copy size={14} />
+					{/if}
+				</button>
+			</div>
+			<div class="combined-options">
+				<label class="checkbox-label">
+					<input type="checkbox" bind:checked={useCaveman} />
+					Caveman
+				</label>
+				<label class="checkbox-label">
+					<input type="checkbox" bind:checked={useDisemvowel} />
+					Disemvoweling
+				</label>
+				<label class="checkbox-label">
+					<input type="checkbox" bind:checked={useTelegraphese} />
+					Telegraphese
+				</label>
+			</div>
+			<textarea
+				readonly
+				class="strategy-textarea"
+				value={combinedValue}
+				placeholder="Select at least one strategy above..."
+			></textarea>
+		</div>
 		{#each strategies as strategy (strategy.id)}
 			<div class="strategy-card">
 				<div class="strategy-card-header">
@@ -386,6 +433,29 @@
 
 	.strategy-textarea:focus {
 		border-color: var(--primary);
+	}
+
+	.combined-options {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.checkbox-label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.85rem;
+		color: var(--text);
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.checkbox-label input[type='checkbox'] {
+		accent-color: var(--primary);
+		width: 1rem;
+		height: 1rem;
+		cursor: pointer;
 	}
 
 	.btn-copy {
