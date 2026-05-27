@@ -4,10 +4,12 @@
 	let useCaveman = $state(true);
 	let useDisemvowel = $state(true);
 	let useTelegraphese = $state(true);
+	let useNewspeak = $state(false);
+	let useTxtspk = $state(false);
 	let copiedId = $state(null);
 	let timeoutId = null;
 
-	const sampleText = `Please remember to pick up the groceries. I am arriving in New York on Tuesday evening and I need my charger.`;
+	const sampleText = `The terrible weather made for a wonderfully cozy evening. Are you free tonight? I will see you later.`;
 
 	function loadSample() {
 		inputText = sampleText;
@@ -69,11 +71,104 @@
 			.join('');
 	}
 
+	function newspeak(text) {
+		if (!text.trim()) return '';
+
+		const ungood =
+			/\b(bad|terrible|awful|horrible|evil|wicked|nasty|poor|inferior|negative|unpleasant|unfavorable|dreadful|atrocious|lousy|abysmal|crummy|rotten|shitty)\b/gi;
+		const plusgood =
+			/\b(great|very|really|quite|extremely|highly|strongly|large|big|huge|immense|massive|significant|substantial|considerable)\b/gi;
+		const doubleplusgood =
+			/\b(splendid|amazing|wonderful|fantastic|magnificent|marvelous|superb|excellent|outstanding|extraordinary|incredible|fabulous|terrific|glorious|superlative)\b/gi;
+
+		let result = text;
+
+		result = result.replace(doubleplusgood, 'doubleplusgood');
+		result = result.replace(plusgood, 'plusgood');
+		result = result.replace(ungood, 'ungood');
+
+		const deleteWords =
+			/\b(a|an|the|is|are|was|were|am|be|been|being|has|have|had|do|does|did|this|that|these|those|very|quite|really|extremely|highly|somewhat|rather|pretty|fairly|some|any|every|each|all|both|few|several|much|many|my|mine|your|yours|his|her|its|our|theirs|i|you|he|she|it|we|they|me|him|us|them|and|or|but|so|for|nor|yet|to|too|also|just|then|there|here|in|on|at|by|with|from|of|about|into|through|during|before|after|above|below|between|out|off|over|under|again|further|more|once|as|than|because|if|while|although|since|until|meanwhile|therefore|however|indeed|instead|anyway|whatever)\b/gi;
+		result = result.replace(deleteWords, '');
+
+		result = result.replace(/[^\w\s]/g, '');
+
+		result = result.replace(/\s+/g, ' ').trim();
+
+		return result;
+	}
+
+	function txtspk(text) {
+		if (!text.trim()) return '';
+
+		let result = text;
+
+		const wordMap = [
+			[/\bare\b/gi, 'r'],
+			[/\byou\b/gi, 'u'],
+			[/\bsee\b/gi, 'c'],
+			[/\bwhy\b/gi, 'y'],
+			[/\bbe\b/gi, 'b'],
+			[/\bto\b/gi, '2'],
+			[/\btoo\b/gi, '2'],
+			[/\btwo\b/gi, '2'],
+			[/\bfor\b/gi, '4'],
+			[/\bfour\b/gi, '4'],
+			[/\bfore\b/gi, '4'],
+			[/\bate\b/gi, '8'],
+			[/\beight\b/gi, '8'],
+			[/\btonight\b/gi, '2nite'],
+			[/\blater\b/gi, 'l8r'],
+			[/\bbefore\b/gi, 'b4'],
+			[/\bgreat\b/gi, 'gr8'],
+			[/\btomorrow\b/gi, '2moro'],
+			[/\binternet\b/gi, 'net'],
+			[/\bplease\b/gi, 'plz'],
+			[/\byour\b/gi, 'ur'],
+			[/\byou're\b/gi, 'ur'],
+			[/\bthat\b/gi, 'dat'],
+			[/\bthe\b/gi, 'da'],
+			[/\band\b/gi, 'n'],
+			[/\bthanks\b/gi, 'thx'],
+			[/\bokay\b/gi, 'k'],
+			[/\bphone\b/gi, 'fone'],
+			[/\blove\b/gi, 'luv'],
+			[/\bhate\b/gi, 'h8'],
+			[/\bwait\b/gi, 'w8']
+		];
+
+		const phrases = [
+			[/\bbe right back\b/gi, 'BRB'],
+			[/\btalk to you later\b/gi, 'TTYL'],
+			[/\bby the way\b/gi, 'BTW'],
+			[/\bin my humble opinion\b/gi, 'IMHO'],
+			[/\breally\b/gi, 'rly'],
+			[/\blaugh(?:ing)? out loud\b/gi, 'LOL'],
+			[/\boh my god\b/gi, 'OMG'],
+			[/\bface to face\b/gi, 'F2F'],
+			[/\b(?:as soon as possible|asap)\b/gi, 'ASAP'],
+			[/\b(?:for what it('s)? worth)\b/gi, 'FWIW'],
+			[/\b(?:rolling on (?:the )?floor laughing)\b/gi, 'ROFL']
+		];
+
+		for (const [pattern, replacement] of phrases) {
+			result = result.replace(pattern, replacement);
+		}
+
+		for (const [pattern, replacement] of wordMap) {
+			result = result.replace(pattern, replacement);
+		}
+
+		return result;
+	}
+
 	function applyCombined(text) {
 		let result = text;
 		if (useTelegraphese) result = telegraphese(result);
+		if (useNewspeak) result = newspeak(result);
 		if (useDisemvowel) result = disemvowel(result);
 		if (useCaveman) result = caveman(result);
+		if (useTxtspk) result = txtspk(result);
 		return result;
 	}
 
@@ -126,6 +221,18 @@
 				name: 'Telegraphese',
 				desc: 'Strip filler words, compress, stop sentences with STOP',
 				value: telegraphese(inputText)
+			},
+			{
+				id: 'newspeak',
+				name: 'Newspeak',
+				desc: 'Orwellian approach — collapse antonyms and magnitude words',
+				value: newspeak(inputText)
+			},
+			{
+				id: 'txtspk',
+				name: 'Txtspk',
+				desc: 'Phonetic shorthand — numbers for syllables, letters for words',
+				value: txtspk(inputText)
 			}
 		];
 	});
@@ -137,8 +244,8 @@
 	<div class="tool-header">
 		<h1>String Shorteners</h1>
 		<p class="tool-description">
-			Shorten your text using different strategies — Caveman, Disemvoweling, Telegraphese, or all
-			combined.
+			Shorten your text using different strategies — Caveman, Disemvoweling, Telegraphese, Newspeak,
+			Txtspk, or all combined.
 		</p>
 	</div>
 
@@ -191,6 +298,14 @@
 				<label class="checkbox-label">
 					<input type="checkbox" bind:checked={useTelegraphese} />
 					Telegraphese
+				</label>
+				<label class="checkbox-label">
+					<input type="checkbox" bind:checked={useNewspeak} />
+					Newspeak
+				</label>
+				<label class="checkbox-label">
+					<input type="checkbox" bind:checked={useTxtspk} />
+					Txtspk
 				</label>
 			</div>
 			<textarea
