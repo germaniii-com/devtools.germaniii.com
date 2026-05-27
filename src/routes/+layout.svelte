@@ -7,6 +7,10 @@
 	let collapsed = $state(false);
 </script>
 
+<svelte:head>
+	<title>Devtools | German III</title>
+</svelte:head>
+
 <main class="layout">
 	<Header />
 
