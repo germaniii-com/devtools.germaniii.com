@@ -1,4 +1,5 @@
 <script>
+	import { RefreshCw, Check, Copy } from '@lucide/svelte';
 	let output = $state([]);
 	let copiedId = $state(null);
 	let timeoutId = null;
@@ -117,13 +118,7 @@
 
 	<div class="actions">
 		<button class="btn btn-primary" onclick={generate}>
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-				<path d="M16 3h5v5" />
-				<path d="M8 3H3v5" />
-				<path d="M12 12v9" />
-				<path d="m21 21-6-6" />
-				<path d="m3 21 6-6" />
-			</svg>
+			<RefreshCw size={16} />
 			Generate
 		</button>
 		<button class="btn btn-tertiary" onclick={clearAll} disabled={output.length === 0}>Reset</button>
@@ -138,14 +133,9 @@
 							<span class="id-label">{item.label}</span>
 							<button class="btn-copy" class:copied={copiedId === item.label} onclick={() => copyText(item.value, item.label)}>
 								{#if copiedId === item.label}
-									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-										<polyline points="20 6 9 17 4 12" />
-									</svg>
+									<Check size={12} />
 								{:else}
-									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-										<rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-										<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-									</svg>
+									<Copy size={12} />
 								{/if}
 							</button>
 						</div>

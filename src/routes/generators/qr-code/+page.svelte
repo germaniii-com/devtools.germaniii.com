@@ -1,5 +1,6 @@
 <script>
 	import QRCode from 'qrcode';
+	import { ArrowRight, CircleAlert, Download } from '@lucide/svelte';
 
 	let inputText = $state('');
 	let error = $state('');
@@ -71,10 +72,7 @@
 
 	<div class="actions">
 		<button class="btn btn-primary" onclick={generate}>
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-				<path d="M5 12h14" />
-				<path d="m12 5 7 7-7 7" />
-			</svg>
+			<ArrowRight size={16} />
 			Generate QR Code
 		</button>
 		<button class="btn btn-secondary" onclick={loadSample}>Load Sample</button>
@@ -83,11 +81,7 @@
 
 	{#if error}
 		<div class="error-banner animate-fade-in">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-				<circle cx="12" cy="12" r="10" />
-				<line x1="12" y1="8" x2="12" y2="12" />
-				<line x1="12" y1="16" x2="12.01" y2="16" />
-			</svg>
+			<CircleAlert size={16} />
 			{error}
 		</div>
 	{/if}
@@ -96,13 +90,9 @@
 		<div class="output-section animate-fade-in">
 			<div class="output-header">
 				<span class="output-label">QR Code</span>
-				<button class="btn btn-secondary btn-sm" onclick={download}>
-					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-						<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-						<polyline points="7 10 12 15 17 10" />
-						<line x1="12" y1="15" x2="12" y2="3" />
-					</svg>
-					Download PNG
+			<button class="btn btn-secondary btn-sm" onclick={download}>
+				<Download size={14} />
+				Download PNG
 				</button>
 			</div>
 			<div class="qr-display">

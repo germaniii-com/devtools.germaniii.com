@@ -1,4 +1,5 @@
 <script>
+	import { ArrowRight, X, Plus } from '@lucide/svelte';
 	let sourceDatetime = $state('');
 	let sourceTimezone = $state('America/New_York');
 	let targets = $state([
@@ -178,20 +179,7 @@
 
 		<div class="divider-column">
 			<div class="arrow-icon">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M5 12h14" />
-					<path d="m12 5 7 7-7 7" />
-				</svg>
+				<ArrowRight size={24} />
 			</div>
 		</div>
 
@@ -220,20 +208,7 @@
 								onclick={() => removeTarget(target.id)}
 								title="Remove timezone"
 							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-								>
-									<path d="M18 6 6 18" />
-									<path d="m6 6 12 12" />
-								</svg>
+								<X size={16} />
 							</button>
 						</div>
 						<div class="target-display">
@@ -253,20 +228,7 @@
 			{/if}
 
 			<button class="btn btn-secondary btn-add" onclick={addTarget}>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M12 5v14" />
-					<path d="M5 12h14" />
-				</svg>
+				<Plus size={16} />
 				Add Target
 			</button>
 		</div>

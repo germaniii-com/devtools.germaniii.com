@@ -1,5 +1,6 @@
 <script>
 	import { marked } from 'marked';
+	import { X, Plus, Link, Code, List, ListOrdered, TextQuote, FileText, Download, Columns2, Monitor, PanelLeftOpen } from '@lucide/svelte';
 
 	marked.setOptions({ breaks: true, gfm: true });
 
@@ -226,34 +227,12 @@ function hello() {
 					}}
 					title="Close tab"
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="14"
-						height="14"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg
-					>
+					<X size={14} />
 				</button>
 			</div>
 		{/each}
 		<button class="tab-add" onclick={addTab} title="New tab">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg
-			>
+			<Plus size={16} />
 		</button>
 	</div>
 
@@ -276,120 +255,29 @@ function hello() {
 			H
 		</button>
 		<button class="toolbar-btn" onclick={insertInline('[', '](url)', 'link text')} title="Link">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path
-					d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
-				/></svg
-			>
+			<Link size={16} />
 		</button>
 		<span class="toolbar-divider"></span>
 		<button class="toolbar-btn" onclick={insertInline('`', '`', 'code')} title="Inline Code">
 			<code>&lt;&gt;</code>
 		</button>
 		<button class="toolbar-btn" onclick={insertCodeBlock} title="Code Block">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg
-			>
+			<Code size={16} />
 		</button>
 		<span class="toolbar-divider"></span>
 		<button class="toolbar-btn" onclick={insertBlock('- ', 'list item')} title="Unordered List">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line
-					x1="8"
-					y1="18"
-					x2="21"
-					y2="18"
-				/><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line
-					x1="3"
-					y1="18"
-					x2="3.01"
-					y2="18"
-				/></svg
-			>
+			<List size={16} />
 		</button>
 		<button class="toolbar-btn" onclick={insertBlock('1. ', 'list item')} title="Ordered List">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><line x1="10" y1="6" x2="21" y2="6" /><line x1="10" y1="12" x2="21" y2="12" /><line
-					x1="10"
-					y1="18"
-					x2="21"
-					y2="18"
-				/><path d="M4 6h1v4" /><path d="M4 10h2" /><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" /></svg
-			>
+			<ListOrdered size={16} />
 		</button>
 		<button class="toolbar-btn" onclick={insertBlock('> ', 'quote')} title="Blockquote">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><path
-					d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"
-				/><path
-					d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
-				/></svg
-			>
+			<TextQuote size={16} />
 		</button>
 		<button class="toolbar-btn" onclick={insertHr} title="Horizontal Rule"> — </button>
 		<span class="toolbar-divider"></span>
 		<button class="toolbar-btn" onclick={loadSample} title="Load Sample">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline
-					points="14 2 14 8 20 8"
-				/><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline
-					points="10 9 9 9 8 9"
-				/></svg
-			>
+			<FileText size={16} />
 		</button>
 		<button
 			class="toolbar-btn"
@@ -397,20 +285,7 @@ function hello() {
 			disabled={!activeContent}
 			title="Download .md"
 		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline
-					points="7 10 12 15 17 10"
-				/><line x1="12" y1="15" x2="12" y2="3" /></svg
-			>
+			<Download size={16} />
 		</button>
 		<span class="toolbar-spacer"></span>
 		<div class="toolbar-stats">
@@ -436,60 +311,11 @@ function hello() {
 					: 'Split view'}
 		>
 			{#if viewMode === 'split'}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					><rect x="3" y="3" width="7" height="18" rx="1" /><rect
-						x="14"
-						y="3"
-						width="7"
-						height="18"
-						rx="1"
-					/></svg
-				>
+				<Columns2 size={16} />
 			{:else if viewMode === 'preview'}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					><rect x="3" y="3" width="18" height="18" rx="1" /><line
-						x1="3"
-						y1="9"
-						x2="21"
-						y2="9"
-					/></svg
-				>
+				<Monitor size={16} />
 			{:else}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					><rect x="3" y="3" width="18" height="18" rx="1" /><line
-						x1="9"
-						y1="3"
-						x2="9"
-						y2="21"
-					/></svg
-				>
+				<PanelLeftOpen size={16} />
 			{/if}
 		</button>
 	{/snippet}

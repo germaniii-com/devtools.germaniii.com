@@ -1,4 +1,5 @@
 <script>
+	import { ArrowRight, ArrowLeft, CircleAlert } from '@lucide/svelte';
 	let leftText = $state('');
 	let rightText = $state('');
 	let error = $state('');
@@ -64,17 +65,11 @@ This is a test string with special chars: ñ, ü, 你好`;
 
 		<div class="converter-actions">
 			<button class="btn btn-primary btn-convert" onclick={encode}>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M5 12h14" />
-					<path d="m12 5 7 7-7 7" />
-				</svg>
+				<ArrowRight size={16} />
 				Encode
 			</button>
 			<button class="btn btn-secondary btn-convert" onclick={decode}>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M19 12H5" />
-					<path d="m12 19-7-7 7-7" />
-				</svg>
+				<ArrowLeft size={16} />
 				Decode
 			</button>
 		</div>
@@ -92,11 +87,7 @@ This is a test string with special chars: ñ, ü, 你好`;
 
 	{#if error}
 		<div class="error-banner animate-fade-in">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-				<circle cx="12" cy="12" r="10" />
-				<line x1="12" y1="8" x2="12" y2="12" />
-				<line x1="12" y1="16" x2="12.01" y2="16" />
-			</svg>
+			<CircleAlert size={16} />
 			{error}
 		</div>
 	{/if}

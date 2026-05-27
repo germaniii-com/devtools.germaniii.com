@@ -1,4 +1,5 @@
 <script>
+	import { ArrowLeft, RefreshCw } from '@lucide/svelte';
 	let textLeft = $state('');
 	let textRight = $state('');
 	let showDiff = $state(false);
@@ -270,23 +271,7 @@
 
 			<div class="actions">
 				<button class="btn btn-primary" onclick={handleCompare}>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<path d="M16 3h5v5" />
-						<path d="M8 3H3v5" />
-						<path d="M12 12v9" />
-						<path d="m21 21-6-6" />
-						<path d="m3 21 6-6" />
-					</svg>
+					<RefreshCw size={16} />
 					Compare Texts
 				</button>
 				<button class="btn btn-secondary" onclick={loadSample}>Load Sample</button>
@@ -321,20 +306,7 @@
 				</div>
 				<div class="toolbar-actions">
 					<button class="btn btn-secondary" onclick={() => (showDiff = false)}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="m12 19-7-7 7-7" />
-							<path d="M19 12H5" />
-						</svg>
+						<ArrowLeft size={16} />
 						Edit Inputs
 					</button>
 					<button class="btn btn-tertiary" onclick={resetAll}>Reset</button>
