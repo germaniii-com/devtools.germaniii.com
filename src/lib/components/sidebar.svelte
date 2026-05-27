@@ -1,4 +1,8 @@
 <script>
+	import { PanelLeftClose, PanelLeftOpen } from '@lucide/svelte';
+
+	let { collapsed = false, ontoggle } = $props();
+
 	const navigation = [
 		{
 			title: 'String Utilities',
@@ -51,32 +55,75 @@
 	];
 </script>
 
-<nav class="sidebar">
-	{#each navigation as group (group.title)}
-		<div class="group">
-			<h2>{group.title}</h2>
-			<ul>
-				{#each group.items as item (item.path)}
-					<li>
-						<a href={item.path} class="nav-link">
-							{item.name}
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</div>
-	{/each}
+<nav class="sidebar" class:collapsed>
+	<button class="toggle-btn" onclick={ontoggle} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}>
+		{#if collapsed}
+			<PanelLeftOpen size={20} />
+		{:else}
+			<PanelLeftClose size={20} />
+		{/if}
+	</button>
+	{#if !collapsed}
+		{#each navigation as group (group.title)}
+			<div class="group">
+				<h2>{group.title}</h2>
+				<ul>
+					{#each group.items as item (item.path)}
+						<li>
+							<a href={item.path} class="nav-link">
+								{item.name}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/each}
+	{/if}
 </nav>
 
 <style>
 	.sidebar {
+		position: relative;
 		height: 100%;
 		width: var(--sidebar-width);
-		overflow-y: auto;
+		overflow: hidden;
 		background: var(--surface);
 		border-right: 1px solid var(--border);
 		padding: 1.5rem;
+		flex-shrink: 0;
+		transition: width 0.2s ease;
 		z-index: 999;
+	}
+
+	.sidebar.collapsed {
+		width: 48px;
+		padding: 1.5rem 0;
+	}
+
+	.toggle-btn {
+		position: absolute;
+		top: 1.5rem;
+		right: 1.5rem;
+		z-index: 1;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.25rem;
+		border-radius: var(--radius);
+		color: var(--text-secondary);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: right 0.2s ease, background-color 0.15s;
+	}
+
+	.sidebar.collapsed .toggle-btn {
+		right: 0.5rem;
+	}
+
+	.toggle-btn:hover {
+		background: var(--border);
+		color: var(--text);
 	}
 
 	.group {

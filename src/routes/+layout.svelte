@@ -4,13 +4,14 @@
 	import Sidebar from '$lib/components/sidebar.svelte';
 
 	let { children } = $props();
+	let collapsed = $state(false);
 </script>
 
 <main class="layout">
 	<Header />
 
 	<div class="layout-container">
-		<Sidebar />
+		<Sidebar collapsed={collapsed} ontoggle={() => collapsed = !collapsed} />
 		<div class="page-content">
 			{@render children()}
 		</div>
