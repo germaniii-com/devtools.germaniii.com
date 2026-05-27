@@ -64,20 +64,22 @@
 		{/if}
 	</button>
 	{#if !collapsed}
-		{#each navigation as group (group.title)}
-			<div class="group">
-				<h2>{group.title}</h2>
-				<ul>
-					{#each group.items as item (item.path)}
-						<li>
-							<a href={item.path} class="nav-link">
-								{item.name}
-							</a>
-						</li>
-					{/each}
-				</ul>
-			</div>
-		{/each}
+		<div class="sidebar-content">
+			{#each navigation as group (group.title)}
+				<div class="group">
+					<h2>{group.title}</h2>
+					<ul>
+						{#each group.items as item (item.path)}
+							<li>
+								<a href={item.path} class="nav-link">
+									{item.name}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			{/each}
+		</div>
 	{/if}
 </nav>
 
@@ -93,6 +95,8 @@
 		flex-shrink: 0;
 		transition: width 0.2s ease;
 		z-index: 999;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.sidebar.collapsed {
@@ -124,6 +128,17 @@
 	.toggle-btn:hover {
 		background: var(--border);
 		color: var(--text);
+	}
+
+	.sidebar-content {
+		flex: 1;
+		overflow-y: auto;
+		min-height: 0;
+		scrollbar-width: none;
+	}
+
+	.sidebar-content::-webkit-scrollbar {
+		display: none;
 	}
 
 	.group {
