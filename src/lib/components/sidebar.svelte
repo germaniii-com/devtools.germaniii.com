@@ -11,7 +11,8 @@
 				{ name: 'Regex Test', path: '/string/regex-test' },
 				{ name: 'Case Convert', path: '/string/case-convert' },
 				{ name: 'String Analyzer', path: '/string/string-analyzer' },
-				{ name: 'Markdown Previewer', path: '/string/markdown-previewer' }
+				{ name: 'Markdown Previewer', path: '/string/markdown-previewer' },
+				{ name: 'String Shorteners', path: '/string/string-shorteners' }
 			]
 		},
 		{
