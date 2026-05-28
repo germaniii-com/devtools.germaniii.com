@@ -634,6 +634,16 @@ function hello() {
 		white-space: nowrap;
 	}
 
+	@media (max-width: 768px) {
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+
+		.toolbar-stats {
+			display: none;
+		}
+	}
+
 	.toolbar-stats .stat-divider {
 		width: 1px;
 		height: 1rem;

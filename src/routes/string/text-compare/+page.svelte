@@ -417,6 +417,18 @@
 		box-shadow: 0 0 0 3px rgba(61, 139, 253, 0.15);
 	}
 
+	@media (max-width: 768px) {
+		.textarea-wrapper textarea {
+			height: 250px;
+		}
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+		.actions {
+			flex-wrap: wrap;
+		}
+	}
+
 	.actions {
 		display: flex;
 		gap: 1rem;
@@ -628,6 +640,27 @@
 
 	.diff-row:last-child {
 		border-bottom: none;
+	}
+
+	@media (max-width: 768px) {
+		.diff-headers,
+		.diff-row {
+			grid-template-columns: 1fr;
+		}
+		.diff-row {
+			gap: 1px;
+		}
+		.diff-header-pane:first-child {
+			border-right: none;
+			border-bottom: 1px solid var(--border);
+		}
+		.diff-pane {
+			grid-template-columns: 2.5rem 1.5rem 1fr;
+		}
+		.diff-pane.left {
+			border-right: none;
+			border-bottom: 1px solid var(--border);
+		}
 	}
 
 	.diff-pane {

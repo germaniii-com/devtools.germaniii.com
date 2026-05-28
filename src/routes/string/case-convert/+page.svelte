@@ -305,6 +305,18 @@
 		box-shadow: 0 0 0 3px rgba(61, 139, 253, 0.15);
 	}
 
+	@media (max-width: 768px) {
+		.textarea-wrapper textarea {
+			height: 150px;
+		}
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+		.cases-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
 	.actions {
 		display: flex;
 		gap: 1rem;

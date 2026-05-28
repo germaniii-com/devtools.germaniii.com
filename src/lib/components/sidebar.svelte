@@ -105,21 +105,33 @@
 		padding: 1.5rem 0;
 	}
 
+	@media (max-width: 768px) {
+		.sidebar.collapsed:hover {
+			background: var(--border);
+		}
+	}
+
 	.toggle-btn {
 		position: absolute;
 		top: 1.5rem;
 		right: 1.5rem;
 		z-index: 1;
-		background: none;
-		border: none;
+		background: var(--surface);
+		border: 1px solid var(--border);
 		cursor: pointer;
-		padding: 0.25rem;
+		padding: 0.3rem;
 		border-radius: var(--radius);
 		color: var(--text-secondary);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		transition: right 0.2s ease, background-color 0.15s;
+	}
+
+	.sidebar.collapsed .toggle-btn {
+		background: var(--surface);
+		border-color: var(--border);
+		box-shadow: var(--shadow);
 	}
 
 	.sidebar.collapsed .toggle-btn {

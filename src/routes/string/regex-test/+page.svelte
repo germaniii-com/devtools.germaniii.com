@@ -232,6 +232,15 @@
 		color: var(--text-secondary);
 	}
 
+	@media (max-width: 768px) {
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+		.cheat-sheet-grid {
+			grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+		}
+	}
+
 	.textareas-container {
 		display: grid;
 		grid-template-columns: 1fr 1fr;

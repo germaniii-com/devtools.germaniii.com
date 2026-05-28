@@ -122,6 +122,15 @@
 		box-shadow: 0 0 0 3px rgba(61, 139, 253, 0.15);
 	}
 
+	@media (max-width: 768px) {
+		.textarea-wrapper textarea {
+			height: 300px;
+		}
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+	}
+
 	.error-banner {
 		display: flex;
 		align-items: center;

@@ -4,7 +4,7 @@
 	import Sidebar from '$lib/components/sidebar.svelte';
 
 	let { children } = $props();
-	let collapsed = $state(false);
+	let collapsed = $state(true);
 </script>
 
 <svelte:head>
@@ -45,5 +45,27 @@
 		background: var(--background);
 		color: var(--text);
 		margin: 1em;
+		width: 100%;
+		min-width: 0;
+	}
+
+	@media (max-width: 768px) {
+		.sidebar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100vh;
+			z-index: 1000;
+		}
+
+		.sidebar:not(.collapsed) {
+			width: var(--sidebar-width);
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.page-content {
+			margin: 0.5em;
+			width: 100%;
+		}
 	}
 </style>

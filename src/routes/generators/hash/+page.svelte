@@ -131,6 +131,12 @@
 		color: var(--text-secondary);
 	}
 
+	@media (max-width: 768px) {
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+	}
+
 	.controls {
 		background: var(--surface);
 		border: 1px solid var(--border);
@@ -155,6 +161,12 @@
 
 	.control-group.flex-1 {
 		flex: 1;
+	}
+
+	@media (max-width: 768px) {
+		.control-group {
+			min-width: 100%;
+		}
 	}
 
 	.control-group label {

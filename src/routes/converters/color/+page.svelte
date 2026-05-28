@@ -387,6 +387,15 @@
 		color: var(--text-secondary);
 	}
 
+	@media (max-width: 768px) {
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+		.stats-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
 	/* Picker Area */
 	.picker-area {
 		display: flex;

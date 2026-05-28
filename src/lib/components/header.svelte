@@ -74,4 +74,18 @@
 	.theme-toggle:hover {
 		background: var(--border);
 	}
+
+	@media (max-width: 768px) {
+		.header-content {
+			padding: 0 1em;
+		}
+
+		.title {
+			font-size: 1.3em;
+		}
+
+		.subtitle {
+			font-size: 0.8em;
+		}
+	}
 </style>

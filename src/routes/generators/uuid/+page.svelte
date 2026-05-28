@@ -171,6 +171,15 @@
 		color: var(--text-secondary);
 	}
 
+	@media (max-width: 768px) {
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+		.ids-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
 	.actions {
 		display: flex;
 		gap: 1rem;

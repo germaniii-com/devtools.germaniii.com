@@ -126,6 +126,12 @@
 		color: var(--text-secondary);
 	}
 
+	@media (max-width: 768px) {
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+	}
+
 	.controls {
 		background: var(--surface);
 		border: 1px solid var(--border);
@@ -295,6 +301,7 @@
 
 	.qr-display img {
 		max-width: 100%;
+		max-height: 80vh;
 		height: auto;
 		image-rendering: pixelated;
 	}

@@ -22,4 +22,15 @@
 		font-weight: normal;
 		font-family: var(--font-family-sans);
 	}
+
+	@media (max-width: 768px) {
+		.footer {
+			padding: 0.75rem 1rem;
+			justify-content: center;
+		}
+
+		.personal-link {
+			font-size: 0.75rem;
+		}
+	}
 </style>

@@ -267,6 +267,15 @@
 		box-shadow: 0 0 0 3px rgba(61, 139, 253, 0.15);
 	}
 
+	@media (max-width: 768px) {
+		.pane textarea {
+			height: 200px;
+		}
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+	}
+
 	/* Converter Actions (between panes) */
 	.converter-actions {
 		display: flex;

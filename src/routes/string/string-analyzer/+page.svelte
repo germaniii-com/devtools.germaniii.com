@@ -231,6 +231,15 @@ New paragraphs are also counted. 1234567890 symbols and numbers included.`;
 		box-shadow: 0 0 0 3px rgba(61, 139, 253, 0.15);
 	}
 
+	@media (max-width: 768px) {
+		.textarea-wrapper textarea {
+			height: 250px;
+		}
+		.tool-header h1 {
+			font-size: 1.5rem;
+		}
+	}
+
 	.actions {
 		display: flex;
 		gap: 1rem;
